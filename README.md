@@ -12,7 +12,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import NiceButton from './NiceButton';
 
-export default class NiceButton__demo__ extends Component {
+export default class NiceButtonDemo extends Component {
   render() {
     return (
       <div>
@@ -22,8 +22,7 @@ export default class NiceButton__demo__ extends Component {
   }
 }
 
-const target = document.querySelector('#root');
-if (target) render(<UIPopupsDemo />, target);
+if (target) render(<NiceButtonDemo />, document.querySelector('#root'));
 ```
 
 
