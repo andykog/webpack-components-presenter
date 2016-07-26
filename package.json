@@ -1,0 +1,12 @@
+{
+  "name": "webpack-components-presenter",
+  "version": "0.0.0",
+  "description": "Starts webpack-dev-server that finds and serves components demos",
+  "main": "index.js",
+  "bin" : { "components-presenter" : "./cli.js" },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
