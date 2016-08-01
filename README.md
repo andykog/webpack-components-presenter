@@ -1,10 +1,12 @@
-webpack-components-presenter (alpha)
-------------------------------------
+webpack-components-presenter
+----------------------------
 
 CLI utility, that works just like `webpack-dev-server`. But it automatically
 finds all the files inside you context folder, containing `__demo__` in their
 names and serves list of them, so you can run demonstration of your ui
 components. Each component should render itself in `#root`:
+
+`npm install --save-dev webpack-components-presenter`
 
 ```js
 /* NiceButton__demo__.jsx */

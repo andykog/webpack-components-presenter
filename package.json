@@ -1,12 +1,21 @@
 {
   "name": "webpack-components-presenter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Starts webpack-dev-server that finds and serves components demos",
   "main": "index.js",
-  "bin" : { "components-presenter" : "./cli.js" },
+  "bin": {
+    "components-presenter": "./cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andykog/webpack-components-presenter/"
+  },
+  "author": "Andy Kogut",
+  "license": "ISC",
+  "peerDependencies": {
+    "webpack-dev-server": "^1.14.1"
+  }
 }
