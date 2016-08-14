@@ -46,6 +46,8 @@ require("webpack/bin/config-optimist")(optimist);
 var argv = optimist.argv;
 
 var wpOpt = require("webpack/bin/convert-argv")(optimist, argv, { outputFilename: "/bundle.js" });
+wpOpt = require('./processConfig')(wpOpt);
+
 var firstWpOpt = Array.isArray(wpOpt) ? wpOpt[0] : wpOpt;
 
 var options = wpOpt.devServer || firstWpOpt.devServer || {};
@@ -80,10 +82,12 @@ if(!options.hot)
 
 if(argv["content-base"]) {
   options.contentBase = argv["content-base"];
-  if(/^[0-9]$/.test(options.contentBase))
+  if(/^[0-9]$/.test(options.contentBase)) {
     options.contentBase = +options.contentBase;
-  else if(!/^(https?:)?\/\//.test(options.contentBase))
+  }
+  else if(!/^(https?:)?\/\//.test(options.contentBase)) {
     options.contentBase = path.resolve(options.contentBase);
+  }
 } else if(argv["content-base-target"]) {
   options.contentBase = { target: argv["content-base-target"] };
 } else if(!options.contentBase) {
@@ -147,8 +151,6 @@ if(options.inline) {
     }
   });
 }
-
-wpOpt = require('./processConfig')(wpOpt);
 
 new Server(webpack(wpOpt), options).listen(options.port, options.host, function(err) {
   if(err) throw err;

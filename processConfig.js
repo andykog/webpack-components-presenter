@@ -3,7 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 
-const context = 'src';
+const context = '.';
 
 const walk = dir => {
   let results = [];
@@ -25,7 +25,9 @@ module.exports = function(config) {
   var p;
   for (p in config) if (config.hasOwnProperty(p)) finalConfig[p] = config[p];
   finalConfig.entry = {};
-  walk(config.context).filter(p => /__demo__.*\.jsx?/.test(p)).forEach(p => {
+  walk(context)
+    .filter(p => p.indexOf(demosStaticFolder) === -1 && /__demo__.*\.jsx?$/.test(p))
+    .forEach(p => {
     var hash = p.split('').map(c => c.charCodeAt(0)).reduce((c, h) => ((h << 5) - h) + c).toString(16);
     finalConfig.entry[path.basename(p) + hash] = [p];
   });
@@ -61,5 +63,6 @@ module.exports = function(config) {
 
   finalConfig.devServer = finalConfig.devServer || {};
   finalConfig.devServer.contentBase = demosStaticFolder;
+  finalConfig.devServer.test = 1;
   return finalConfig;
 };
