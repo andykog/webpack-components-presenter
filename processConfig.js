@@ -28,9 +28,9 @@ module.exports = function(config) {
   walk(context)
     .filter(p => p.indexOf(demosStaticFolder) === -1 && /__demo__.*\.jsx?$/.test(p))
     .forEach(p => {
-    var hash = p.split('').map(c => c.charCodeAt(0)).reduce((c, h) => ((h << 5) - h) + c).toString(16);
-    finalConfig.entry[path.basename(p) + hash] = [p];
-  });
+      var hash = p.split('').map(c => c.charCodeAt(0)).reduce((c, h) => ((h << 5) - h) + c).toString(16);
+      finalConfig.entry[path.basename(p) + hash] = [p];
+    });
 
   try {
     fs.accessSync(demosStaticFolder, fs.F_OK);
@@ -41,6 +41,10 @@ module.exports = function(config) {
   fs.writeFileSync(demosStaticFolder + '/index.html', `
   <!DOCTYPE html>
   <html lang="en"><head><meta charset="UTF-8"></head><body>
+  <style>
+    a { display: block; color: #397DC0; padding: 5px 20px; border-bottom: 1px solid #eee; text-decoration: none; font: 15px/20px normal -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"}
+    a: hover { color: #3A91D8 }
+  </style>
   ${Object.keys(finalConfig.entry).map(entryName => `<a href="${entryName}.html">${entryName}</a>`)}
   </body></html>
   `);
